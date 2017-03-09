@@ -6,12 +6,46 @@
     <body>
         <h1>TEST</h1>
 
-         <form id="login_form" action="tint" method="post">
-				    <label class="grey" for="log">Email Address</label><br />
-				    <input type="text" name="email" style="width:99%" id="email"><br>
+            <form id="someForm">
+				    <label class="grey" for="log">Data</label><br />
+				    <input type="text" name="test" style="width:99%" id="test"><br>
 				    
-				    <input type="submit" id="loginbtn" name="login" value="DO" class="button"><br />
-						{% raw xsrf_form_html() %}
+				   
+						
 		    </form>
+            <button id="submit">CLICK</button>
+
+            <script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+
+            <script>
+                
+
+                function getCookie(name) {
+                    var r = document.cookie.match("\\b" + name + "=([^;]*)\\b");
+                    return r ? r[1] : undefined;
+                }
+
+                $.postData = function(url, data, callback) {
+                        xsrf = getCookie("_xsrf");
+                        $.ajax({url: url, data: {"xmlData": data, "_xsrf": xsrf}, dataType: "text", type: "POST",
+                            success: callback});
+                };
+
+
+
+                function getDataFromForm() {
+                   data =  $('#someForm input#test').val();
+                   return data;
+                }
+
+                $('button#submit').click(function(e) {
+                    var xmlData = getDataFromForm();
+                    $.postData('tint', xmlData, function(response) {console.log("Just got a response:", response)})
+                });
+
+            </script>
     </body>
 </html>
