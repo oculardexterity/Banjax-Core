@@ -8,7 +8,18 @@ logger = logging.getLogger('boilerplate.' + __name__)
 class BaseHandler(tornado.web.RequestHandler):
     """A class to collect common handler methods - all other handlers should
     subclass this one.
+
+
+    RH: thanks for hint. Build in the fucktonne XML validators here.
+
+
+
+    Maybe don't need this JSON business below.
     """
+
+
+    #SUPPORTED_METHODS = tornado.web.RequestHandler.SUPPORTED_METHODS + ("PATCH",)
+
 
     def load_json(self):
         """Load JSON from the request body and store them in
