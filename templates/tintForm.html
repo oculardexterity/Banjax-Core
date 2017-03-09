@@ -6,44 +6,30 @@
     <body>
         <h1>TEST</h1>
 
-            <form id="someForm">
+         
 				    <label class="grey" for="log">Data</label><br />
 				    <input type="text" name="test" style="width:99%" id="test"><br>
 				    
 				   
 						
-		    </form>
+	
             <button id="submit">CLICK</button>
 
-            <script
-  src="https://code.jquery.com/jquery-3.1.1.min.js"
-  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-  crossorigin="anonymous"></script>
+
+            <script src="{{ static_url('js/vendor/jquery-3.1.1.min.js') }}"></script>
+            <script src="{{ static_url('js/banjax.js') }}"></script>
+            <script src="{{ static_url('js/banjax-data.js') }}"></script>
+       
 
             <script>
-                
-
-                function getCookie(name) {
-                    var r = document.cookie.match("\\b" + name + "=([^;]*)\\b");
-                    return r ? r[1] : undefined;
-                }
-
-                $.postData = function(url, data, callback) {
-                        xsrf = getCookie("_xsrf");
-                        $.ajax({url: url, data: {"xmlData": data, "_xsrf": xsrf}, dataType: "text", type: "POST",
-                            success: callback});
-                };
-
-
-
-                function getDataFromForm() {
-                   data =  $('#someForm input#test').val();
+                function buildDataStructure() {
+                   data =  $('input#test').val();
                    return data;
                 }
 
                 $('button#submit').click(function(e) {
-                    var xmlData = getDataFromForm();
-                    $.postData('tint', xmlData, function(response) {console.log("Just got a response:", response)})
+                    var xmlData = buildDataStructure();
+                    Banjax.data.post('tint', xmlData, function(response) {console.log("Just got a response:", response)})
                 });
 
             </script>
