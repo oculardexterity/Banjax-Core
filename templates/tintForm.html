@@ -1,38 +1,40 @@
-<html>
-    <head>
-        <title>Tornado Boilerplate</title>
-    </head>
 
-    <body>
-        <h1>TEST</h1>
+{% extends "base.html" %}
 
-         
-				    <label class="grey" for="log">Data</label><br />
-				    <input type="text" name="test" style="width:99%" id="test"><br>
-				    
-				   
-						
-	
-            <button id="submit">CLICK</button>
+{% block title %} TEST FORM {% end %}
+
+{% block javascript %} 
+
+    <script src="{{ static_url('js/vendor/jquery-3.1.1.min.js') }}"></script>
+    <script src="{{ static_url('js/banjax.js') }}"></script>
+    <script src="{{ static_url('js/banjax-data.js') }}"></script> 
+
+    <script>
+        function buildDataStructure() {
+           data =  $('input#test').val();
+           return data;
+        }
+
+        $('button#submit').click(function(e) {
+            var xmlData = buildDataStructure();
+            Banjax.data.post('tint', xmlData, function(response) {console.log("Just got a response:", response)},
+                function(response) {console.log("BAD REQUEST:", response.responseText)})
+        });
+
+    </script>
+
+{% end %} 
 
 
-            <script src="{{ static_url('js/vendor/jquery-3.1.1.min.js') }}"></script>
-            <script src="{{ static_url('js/banjax.js') }}"></script>
-            <script src="{{ static_url('js/banjax-data.js') }}"></script>
-       
 
-            <script>
-                function buildDataStructure() {
-                   data =  $('input#test').val();
-                   return data;
-                }
+{% block content %}
 
-                $('button#submit').click(function(e) {
-                    var xmlData = buildDataStructure();
-                    Banjax.data.post('tint', xmlData, function(response) {console.log("Just got a response:", response)},
-                        function(response) {console.log("BAD REQUEST:", response.responseText)})
-                });
+    <h1>TEST</h1>
+             
+    <label class="grey" for="log">Data</label><br />
+    <input type="text" name="test" style="width:99%" id="test"><br>		
+    <button id="submit">CLICK</button>
 
-            </script>
-    </body>
-</html>
+
+{% end %}
+ 

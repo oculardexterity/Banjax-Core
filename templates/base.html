@@ -1,11 +1,14 @@
 <html>
-    <head>
-        <title>Tornado Boilerplate</title>
-    </head>
+  <head>
+    <title>{% block title %}Default title{% end %}</title>
+  </head>
+  <body>
 
-    <body>
-        <h1>FOO!</h1>
-
-         <h2>Motherfooing!</h2>
-    </body>
+        {% block content %}
+          <h1>FOO!</h1>
+          <h2>(motherfooer)</h2>
+        {% end %}
+     
+        {% block javascript %} {% end %}
+  </body>
 </html>
