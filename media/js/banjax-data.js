@@ -5,14 +5,14 @@ Banjax.data = (function () {
     	return r ? r[1] : undefined;
 	 }
 
-  	var postData = function(url, data, successCallback) {
+  	var postData = function(url, data, successCallback, errorCallback) {
       	xsrf = getCookie("_xsrf");
       	$.ajax({url: url, 
       			data: {"xmlData": data, "_xsrf": xsrf}, 
       			dataType: "text", 
       			type: "POST",
          		success: successCallback,
-         		error: function(){console.log('bugger did not work')} });
+         		error: errorCallback});
 	};
  
   	return {
