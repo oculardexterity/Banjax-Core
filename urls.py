@@ -15,11 +15,6 @@ url_patterns = [
     # Tint handler and tint static handler
     (r'/tint', TintHandler),
     (r'/banjax_tint/module_assets/(.*)', tornado.web.StaticFileHandler, dict(path='banjax_modules/banjax_tint/module_assets')),
-
-
-
-
-
 ]
 
 
@@ -34,6 +29,9 @@ url_patterns = [
 
 
 """
+TRASHY ATTEPT TO AUTOLOAD MODULES: probs bad idea.
+
+
 for dr in [dr for dr in os.listdir(MODULES_ROOT) if dr.startswith('banjax_')]:
 	for f in [f for f in os.listdir(os.path.join(MODULES_ROOT, dr)) \
 				 if (f.endswith('.py') and not f.startswith('__'))]:
