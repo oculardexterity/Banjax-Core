@@ -13,6 +13,7 @@ logger = logging.getLogger('boilerplate.' + __name__)
 
 
 class TintHandler(BaseHandler):
+
 	
 	@tornado.gen.coroutine
 	def get(self):
@@ -21,7 +22,6 @@ class TintHandler(BaseHandler):
 	@tornado.gen.coroutine
 	def post(self):
 		xmlData = self.get_argument("xmlData")
-		print()
 		try:
 			xmlTree = yield executor.submit(etree.parse, StringIO(xmlData))
 			#xmlTree = etree.parse(StringIO(xmlData))
