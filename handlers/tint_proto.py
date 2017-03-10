@@ -23,13 +23,10 @@ class TintHandler(BaseHandler):
 		xmlData = self.get_argument("xmlData")
 		print()
 		try:
-			yield tornado.gen.sleep(10)
 			xmlTree = yield executor.submit(etree.parse, StringIO(xmlData))
 			#xmlTree = etree.parse(StringIO(xmlData))
 			self.write({"success": True, "testReturnData": xmlData})
 		except Exception as e:
-			self.clear()
-			self.set_status(400)
-			self.finish({"success": False, "message": str(e)})
+			self.return_error(404, e)
 		
 

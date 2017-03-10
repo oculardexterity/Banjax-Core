@@ -6,6 +6,8 @@ logger = logging.getLogger('boilerplate.' + __name__)
 
 
 class BaseHandler(tornado.web.RequestHandler):
+
+
     """A class to collect common handler methods - all other handlers should
     subclass this one.
 
@@ -22,6 +24,10 @@ class BaseHandler(tornado.web.RequestHandler):
 
     #SUPPORTED_METHODS = tornado.web.RequestHandler.SUPPORTED_METHODS + ("PATCH",)
 
+    def return_error(self, http_code, message):
+        self.clear()
+        self.set_status(400)
+        self.finish({"success": False, "message": str(message)})
 
     def load_json(self):
         """Load JSON from the request body and store them in
