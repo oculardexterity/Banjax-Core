@@ -1,5 +1,5 @@
 
-{% extends "BANJAX_base.html" %}
+{% extends "Banjax/base.html" %}
 
 {% block title %} TEST FORM {% end %}
 
@@ -29,6 +29,8 @@
 {% block content %}
     <h1>TEST</h1>
              
+    {% include 'tint_abuse.html' %}
+
     <label class="grey" for="log">Data</label><br />
     <input type="text" name="test" style="width:99%" id="test"><br>		
     <button id="submit">CLICK</button>

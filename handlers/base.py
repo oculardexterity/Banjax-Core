@@ -11,14 +11,15 @@ logger = logging.getLogger('boilerplate.' + __name__)
 
 from settings import ROOT
 
+
+
 class modLoader(template.Loader):
 
     def resolve_path(self, name, parent_path=None):
-        print('Modloader resolvepath called', name)
-        print("PARENTPATH:", parent_path)
-        if 'BANJAX_' in name:
-            name = os.path.join(ROOT, 'templates', name.replace('BANJAX_', ''))
-            return name
+      
+        if 'Banjax/' in name:
+            name = os.path.join(ROOT, 'templates', name.replace('Banjax/', ''))
+
         if parent_path and not parent_path.startswith("<") and \
             not parent_path.startswith("/") and \
                 not name.startswith("/"):
@@ -28,8 +29,6 @@ class modLoader(template.Loader):
             if relative_path.startswith(self.root):
                 name = relative_path[len(self.root) + 1:]
 
-        if 'BANJAX_' in name:
-            name = os.path.join(ROOT, 'templates', name.replace('BANJAX_', ''))
         return name
 
 
@@ -53,17 +52,17 @@ class BaseHandler(tornado.web.RequestHandler):
     """
 
     def get_template_path(self):
-        #print('gtp called', template_name)
-
-        ###### TODO THIS LINE DOES NOT WORK IN DODGY AUTOIMPORT SCENARIO
+        
         calling_file = inspect.getfile(self.__class__)
-        print(calling_file)
+
+
         if 'banjax_modules' in calling_file:
             module_name = calling_file.split('banjax_modules/')[1].split('/')[0]
-            print("GTP: called from module:", module_name)
-            thispath = ROOT + '/banjax_modules/' + module_name + '/module_templates/'
-            return thispath
-        return None
+            file_path = os.path.join(ROOT, 'banjax_modules', module_name,'module_templates')
+            return file_path
+        return os.path.join(ROOT, 'templates')
+
+
 
     def render_string(self, template_name, **kwargs):
         """Generate the given template with the given arguments.
@@ -73,18 +72,19 @@ class BaseHandler(tornado.web.RequestHandler):
         """
         # If no template_path is specified, use the path of the calling file
         template_path = self.get_template_path()
-        print("TEMPLATE PATH: ", template_path)
+
+        '''
         if not template_path:
-            print('NOT TEMPLATE PATH')
             frame = sys._getframe(0)
             web_file = frame.f_code.co_filename
             while frame.f_code.co_filename == web_file:
                 frame = frame.f_back
             template_path = os.path.dirname(frame.f_code.co_filename)
+        '''
         with tornado.web.RequestHandler._template_loader_lock:
             if template_path not in tornado.web.RequestHandler._template_loaders:
-                is_module = 'banjax_modules' in template_path
-                loader = self.create_template_loader(template_path, is_module=is_module)
+                
+                loader = self.create_template_loader(template_path)
                 tornado.web.RequestHandler._template_loaders[template_path] = loader
             else:
                 loader = tornado.web.RequestHandler._template_loaders[template_path]
@@ -95,7 +95,7 @@ class BaseHandler(tornado.web.RequestHandler):
         return t.generate(**namespace)
 
 
-    def create_template_loader(self, template_path, is_module=False, is_default=True):
+    def create_template_loader(self, template_path):
         """Returns a new template loader for the given path.
 
         May be overridden by subclasses.  By default returns a
@@ -106,9 +106,13 @@ class BaseHandler(tornado.web.RequestHandler):
         """
         settings = self.application.settings
         
+
+        '''
         if "template_loader" in settings and not is_module:
             return settings["template_loader"]
+        '''
         
+
         kwargs = {}
         if "autoescape" in settings:
             # autoescape=None means "no escaping", so we have to be sure

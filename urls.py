@@ -9,7 +9,7 @@ url_patterns = [
     (r'/tint', TintHandler)
 ]
 
-'''
+"""
 for dr in [dr for dr in os.listdir(MODULES_ROOT) if dr.startswith('banjax_')]:
 	for f in [f for f in os.listdir(os.path.join(MODULES_ROOT, dr)) \
 				 if (f.endswith('.py') and not f.startswith('__'))]:
@@ -21,7 +21,7 @@ for dr in [dr for dr in os.listdir(MODULES_ROOT) if dr.startswith('banjax_')]:
 		
 		url_patterns += mod.urls()
 
-'''
+"""
 
 
 
