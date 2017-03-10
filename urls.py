@@ -8,12 +8,18 @@ url_patterns = [
 	# Default static route
 	(r'/static/(.*)', tornado.web.StaticFileHandler, dict(path='media')),
 
+
     (r"/foo", FooHandler),
     
 
     # Tint handler and tint static handler
     (r'/tint', TintHandler),
     (r'/banjax_tint/module_assets/(.*)', tornado.web.StaticFileHandler, dict(path='banjax_modules/banjax_tint/module_assets')),
+
+
+
+
+
 ]
 
 
