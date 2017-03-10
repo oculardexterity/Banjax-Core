@@ -5,6 +5,7 @@ import tornado.web
 from tornado.options import options
 
 from settings import settings
+import ui_methods
 from urls import url_patterns
 
 
@@ -12,7 +13,7 @@ from urls import url_patterns
 
 class TornadoBoilerplate(tornado.web.Application):
     def __init__(self):
-        tornado.web.Application.__init__(self, url_patterns, **settings)
+        tornado.web.Application.__init__(self, url_patterns, ui_methods=ui_methods, **settings)
 
 
 def main():

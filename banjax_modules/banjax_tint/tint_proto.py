@@ -10,6 +10,10 @@ from executor import executor
 import logging
 logger = logging.getLogger('boilerplate.' + __name__)
 
+def urls():
+	return [
+		(r"/tint", TintHandler),
+	]
 
 
 class TintHandler(BaseHandler):

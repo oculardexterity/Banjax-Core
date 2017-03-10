@@ -1,12 +1,12 @@
 
-{% extends "base.html" %}
+{% extends "BANJAX_base.html" %}
 
 {% block title %} TEST FORM {% end %}
 
 {% block js %} 
 
     <script src="{{ static_url('js/banjax.js') }}"></script>
-    <script src="{{ static_url('js/banjax-data.js') }}"></script> 
+    <script src="{{ static_url('js/banjax-data.js') }}"></script>
 
     <script>
         function buildDataStructure() {
@@ -27,7 +27,6 @@
 
 
 {% block content %}
-
     <h1>TEST</h1>
              
     <label class="grey" for="log">Data</label><br />
