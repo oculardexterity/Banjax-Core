@@ -21,7 +21,7 @@ class TintHandler(BaseHandler):
 	
 	@tornado.gen.coroutine
 	def get(self):
-		self.render("tintForm.html")
+		self.render("tint_form.html")
 
 	@tornado.gen.coroutine
 	def post(self):
