@@ -1,13 +1,31 @@
 
-
+import tornado
 from handlers.foo import FooHandler
 from banjax_modules.banjax_tint.tint_proto import TintHandler
 
 
 url_patterns = [
+	# Default static route
+	(r'/static/(.*)', tornado.web.StaticFileHandler, dict(path='media')),
+
     (r"/foo", FooHandler),
-    (r'/tint', TintHandler)
+    
+
+    # Tint handler and tint static handler
+    (r'/tint', TintHandler),
+    (r'/banjax_tint/module_assets/(.*)', tornado.web.StaticFileHandler, dict(path='banjax_modules/banjax_tint/module_assets')),
 ]
+
+
+
+
+
+
+
+
+
+
+
 
 """
 for dr in [dr for dr in os.listdir(MODULES_ROOT) if dr.startswith('banjax_')]:

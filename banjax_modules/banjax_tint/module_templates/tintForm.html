@@ -5,23 +5,11 @@
 
 {% block js %} 
 
-    <script src="{{ static_url('js/banjax.js') }}"></script>
-    <script src="{{ static_url('js/banjax-data.js') }}"></script>
+    <script src="{{ static_assets('js/banjax.js') }}"></script>
+    <script src="{{ static_assets('js/banjax-data.js') }}"></script>
 
-    <script>
-        function buildDataStructure() {
-           data =  $('input#test').val();
-           return data;
-        }
-
-        $('button#submit').click(function(e) {
-            var xmlData = buildDataStructure();
-            Banjax.data.post('tint', xmlData, function(response) {console.log("Just got a response:", response)},
-                function(response) {console.log("BAD REQUEST:", response.responseText)})
-        });
-
-    </script>
-
+    <script src="{{ module_assets('js/banjax-tint.js') }}"></script>
+    
 {% end %} 
 
 
