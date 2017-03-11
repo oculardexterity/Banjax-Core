@@ -1,3 +1,10 @@
+'''
+Break this up into separate folders!
+Especially this `base` needs to be hidden away in a lib dir.
+Reserving the handlers dir for actual handlers.
+
+'''
+
 import inspect
 import json
 import os
@@ -14,6 +21,10 @@ from settings import ROOT
 
 
 class modLoader(template.Loader):
+    '''
+        A subclassed template.Loader to point back to Banjax-Core template 
+        folder for default templates
+    '''
 
     def resolve_path(self, name, parent_path=None):
       
@@ -51,7 +62,18 @@ class BaseHandler(tornado.web.RequestHandler):
     RH: **but** maybe here... probably here! should go a revisionDesc DECORATOR??????
     """
 
+
+
     def get_template_path(self):
+        '''
+            Overriding get_template_path function.
+            
+            Inspects the file of the class that is calling the template render.
+            Assumes templates are in dir called `module_templates` inside the
+            module dir. May need to modify module_name variable below to get
+            correct dir (if it doesn't work)
+
+        '''
         
         calling_file = inspect.getfile(self.__class__)
 
@@ -74,6 +96,12 @@ class BaseHandler(tornado.web.RequestHandler):
         template_path = self.get_template_path()
 
         '''
+
+        # THIS is crossed out for some reason; I think because
+        # building by convention allows two options to be essentially
+        # hard-coded: either pointing to core templates or module templates
+
+
         if not template_path:
             frame = sys._getframe(0)
             web_file = frame.f_code.co_filename
@@ -108,6 +136,9 @@ class BaseHandler(tornado.web.RequestHandler):
         
 
         '''
+        # Don't use the default template path under any circs.
+
+
         if "template_loader" in settings and not is_module:
             return settings["template_loader"]
         '''
@@ -120,6 +151,8 @@ class BaseHandler(tornado.web.RequestHandler):
             kwargs["autoescape"] = settings["autoescape"]
         if "template_whitespace" in settings:
             kwargs["whitespace"] = settings["template_whitespace"]
+
+        # Return the modified template loader.
         return modLoader(template_path, **kwargs)
         
 
