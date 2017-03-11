@@ -1,0 +1,3 @@
+[submodule "banjax_modules/banjax_tint"]
+	path = banjax_modules/banjax_tint
+	url = https://github.com/oculardexterity/Banjax-Tint-Dev.git
