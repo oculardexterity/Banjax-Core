@@ -11,6 +11,9 @@ import logconfig
 path = lambda root,*a: os.path.join(root, *a)
 ROOT = os.path.dirname(os.path.abspath(__file__))
 
+
+BASEURL = 'http://localhost:8888'
+
 define("port", default=8888, help="run on the given port", type=int)
 define("config", default=None, help="tornado config file")
 define("debug", default=False, help="debug mode")
