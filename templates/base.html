@@ -9,47 +9,62 @@
     {% block module_css %} {% end %}
   </head>
   <body>
-    <div class="row">
-      <div class="large-12 columns">
-        <h1>Banjax Crowdsourcing System</h1>
-      </div>
-    </div>
+    <header >
+        <div class="row">
+            <h1 class="large-12 columns">Banjax!</h1>
+        </div>
+        <div class="row">
+            <nav class="large-8 columns">
+                <ul class="menu">
+                    <li><a href="{{ banjax_url('foo') }}">Link to foo</a></li>
+                    <li><a href="{{ banjax_url('tint') }}">Link to tint</a></li>
+                    {% block module_nav %} {% end %}
+                </ul>
+            </nav>
+            <div class="login large-3 columns callout">
+                <form>
+                    <label><b>Email</b></label>
+                    <input type="email" placeholder="Enter Username" name="uname" required>
+
+                    <label><b>Password</b></label>
+                    <input type="password" placeholder="Enter Password" name="psw" required>
+
+                    <button class="button" type="submit">Login</button>
+                </form>
+            </div>
+        </div>
+    </header>
 
     
-            <form>
-                <label><b>Email</b></label>
-                <input type="email" placeholder="Enter Username" name="uname" required>
+            
 
-                <label><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" name="psw" required>
-
-                <button type="submit">Login</button>
-            </form>
-
-            <a href="{{ banjax_url('foo') }}">Link to foo</a>
+            
 
 
 
-    <div class="row">
-      <div class="large-12 columns">
-        <div class="callout">
+      
+        
           
-          <div class="row">
-                        <div class="banjax_module_content">
-                {% block content %}
-                    <h1>FOO!</h1>
-                    <h2>(motherfooer)</h2>
+          
+    <div class="banjax_module_content">
 
-                    <p>
-                        <a href="{{ banjax_url('tint') }}">Link to tint</a>
-                    </p>
-                {% end %}
+    <!-- IMPORTED MODULAR CONTENT OVERWRITES THIS BLOCK -->           
+        {% block content %}
+            <div class="large-12 columns">
+                <h1>FOO!</h1>
+                <h2>(motherfooer)</h2>
+
+                <p>
+                    <a href="{{ banjax_url('tint') }}">Link to tint</a>
+                </p>
             </div>
-
-          </div>
-        </div>
-      </div>
+        {% end %}
+        
     </div>
+
+      
+
+        
 
     <div class="row">
       <div class="large-8 medium-8 columns">
