@@ -1,3 +1,6 @@
+$(document).foundation()
+
+
 var Banjax = (function (baseRoute) {
  
   	// Instance stores a reference to the Singleton
