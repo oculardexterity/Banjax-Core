@@ -6,15 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Default title{% end %}</title>
     {%  include "Banjax/site_css.html" %}
+    {% block module_css %} {% end %}
   </head>
   <body>
     <div class="row">
       <div class="large-12 columns">
-        <h1>Welcome to Banjax</h1>
+        <h1>Banjax Crowdsourcing System</h1>
       </div>
     </div>
 
-    <h1>Banjax Crowdsourcing System</h1>
+    
             <form>
                 <label><b>Email</b></label>
                 <input type="email" placeholder="Enter Username" name="uname" required>
@@ -169,7 +170,7 @@
 
     {% include "Banjax/site_js.html" %}
 
-    {% block js %} {% end %}
+    {% block module_js %} {% end %}
   </body>
 </html>
 
