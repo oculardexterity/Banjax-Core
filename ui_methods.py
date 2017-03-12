@@ -4,8 +4,8 @@ import os
 from settings import ROOT
 from settings import BASEURL
 
-def banjax_core(self, filename):
-	return os.path.join(ROOT, filename)
+def banjax_url(self, file_path):
+	return os.path.join(BASEURL, file_path)
 
 def module_assets(self, filename):
 

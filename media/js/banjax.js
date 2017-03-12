@@ -1,12 +1,16 @@
-var Banjax = (function () {
+var Banjax = (function (baseRoute) {
  
   	// Instance stores a reference to the Singleton
 	var instance;
-	
-
 	function init() {
 		// Some base code goes here. 
     
+
+		
+
+
+
+
  
     	return {
 	    
