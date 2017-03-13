@@ -12,3 +12,11 @@ header .login {
 
 	margin: 0 1rem;
 }
+
+.banjax_module_content {
+	margin-top: 2rem;
+}
+
+.note_bar textarea {
+	font-size:12px;
+}
