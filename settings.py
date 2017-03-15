@@ -48,7 +48,7 @@ settings['debug'] = DEPLOYMENT != DeploymentType.PRODUCTION or options.debug
 settings['cookie_secret'] = "your-cookie-secret"
 settings['xsrf_cookies'] = True
 settings['template_loader'] = tornado.template.Loader(TEMPLATE_ROOT)
-settings['autoreload'] = False
+settings['autoreload'] = True
 
 SYSLOG_TAG = "boilerplate"
 SYSLOG_FACILITY = logging.handlers.SysLogHandler.LOG_LOCAL2

@@ -17,11 +17,18 @@ class TornadoBoilerplate(tornado.web.Application):
 
 
 def main():
+    
+    run_on_cpu_cores = int(settings['autoreload'])
+    print("Tornado server (re)started\nCPU count:", tornado.process.cpu_count(), 
+    	"\nRunning on", tornado.process.cpu_count() if not run_on_cpu_cores else run_on_cpu_cores, 
+    	'core(s)', '[autoreload enabled]' if run_on_cpu_cores else '[autoreload disabled]',
+    	 '\n------------------------------------------')
+
+
     app = TornadoBoilerplate()
-    print("Tornado server started\nCPU count:", tornado.process.cpu_count())
     http_server = tornado.httpserver.HTTPServer(app)
     http_server.bind(options.port)
-    http_server.start(0)  # autodetect number of cores and fork a process for each
+    http_server.start(run_on_cpu_cores)  # autodetect number of cores and fork a process for each
     tornado.ioloop.IOLoop.current().start()
     
 
