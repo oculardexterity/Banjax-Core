@@ -14,9 +14,17 @@ Banjax.data = (function () {
          		success: successCallback,
          		error: errorCallback});
 	};
+
+    function current_item() {
+        var itemloaded = window.location.href.split('/');
+        itemloaded = itemloaded[itemloaded.length -1]
+        //console.log(itemloaded);
+        return itemloaded
+    }
  
   	return {
     	post: postData,
+        current_item: current_item
   	};
  
 })();
